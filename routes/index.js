@@ -91,6 +91,7 @@ router.get("/shopping-cart", async (req, res) => {
     }
     // if user is signed in and has cart, load user's cart from the db
     if (req.user && cart_user) {
+      console.log(cart_user)
       req.session.cart = cart_user;
       return res.render("shop/shopping-cart", {
         cart: cart_user,
@@ -210,7 +211,7 @@ router.get("/checkout", middleware.isLoggedIn, async (req, res) => {
 
   const errMsg = req.flash("error")[0];
   res.render("shop/checkout", {
-    total: cart.totalCost,
+    total: cart ? cart.totalCost : 0,
     csrfToken: req.csrfToken(),
     errorMsg,
     pageName: "Checkout",

@@ -8,6 +8,11 @@ const Order = require("../models/order");
 const Category = require("../models/category");
 AdminBro.registerAdapter(AdminBroMongoose);
 
+const {
+  after: uploadAfterHook,
+  before: uploadBeforeHook,
+} = require('../actions/upload-image-hook');
+
 const express = require("express");
 const app = express();
 
@@ -15,7 +20,7 @@ const adminBro = new AdminBro({
   databases: [mongoose],
   rootPath: "/admin",
   branding: {
-    companyName: "BestBags",
+    companyName: "Dickael Store",
     logo: "/images/shop-icon.png",
     softwareBrothers: false,
   },
@@ -42,12 +47,35 @@ const adminBro = new AdminBro({
             type: "number",
           },
           imagePath: {
-            isVisible: { list: false, filter: false, show: true, edit: true },
+            isVisible: false
+          },
+          uploadImage: {
+            isVisible: { list: true, filter: false, show: true, edit: true },
             components: {
-              show: AdminBro.bundle(
-                "../components/admin-imgPath-component.jsx"
-              ),
+              edit: AdminBro.bundle('../components/upload-image-edit.jsx'),
+              list: AdminBro.bundle('../components/upload-image-list.jsx'),
             },
+          },
+        },
+        actions: {
+          new: {
+            after: async (response, request, context) => {
+              return uploadAfterHook(response, request, context);
+            },
+            before: async (request, context) => {
+              return uploadBeforeHook(request, context);
+            },
+          },
+          edit: {
+            after: async (response, request, context) => {
+              return uploadAfterHook(response, request, context);
+            },
+            before: async (request, context) => {
+              return uploadBeforeHook(request, context);
+            },
+          },
+          show: {
+            isVisible: false,
           },
         },
       },
