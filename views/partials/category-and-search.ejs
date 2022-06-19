@@ -1,23 +1,29 @@
-<div class="category-searchfield-container d-flex">
-    <div class="category-field-container">
-        <select name="category" class="form-control">
-            <% if (categories) { %>
-                <option value="/products/" <% if (pageName === "All Products") { %> selected <% } %> >All (Category)</option>
-            <%} else { %>
-                <option value="">Category</option>
-            <% } %>
-            
-            <% if (categories) { %>
-                <% categories.forEach( category => { %>
-                    <option 
-                        value="/products/<%= category.slug %>"
-                        <% if (pageName === category.title) { %> selected <% } %> 
-                    ><%= category.title %></option>
-                <% }) %>
-            <% } %>
-        </select>
-    </div>
-    <div class="search-field-container">
-        <input type="text" name="search" class="form-control">
+<div class="category-searchbar-wrapper">
+    <div class="container">
+        <div class="category-searchfield-container d-flex">
+            <div class="category-field-container">
+                <select name="category" class="form-control">
+                    <% if (categories) { %>
+                        <option value="/products/" <% if (pageName === "All Products") { %> selected <% } %> >All (Category)</option>
+                    <%} else { %>
+                        <option value="">Category</option>
+                    <% } %>
+                    
+                    <% if (categories) { %>
+                        <% categories.forEach( category => { %>
+                            <option 
+                                value="/products/<%= category.slug %>"
+                                <% if (pageName === category.title) { %> selected <% } %> 
+                            ><%= category.title %></option>
+                        <% }) %>
+                    <% } %>
+                </select>
+            </div>
+            <div class="search-field-container">
+                <form  action="/products/search" method="GET">
+                    <input type="search" name="search" class="form-control" placeholder="search">
+                </form>
+            </div>
+        </div>
     </div>
 </div>
