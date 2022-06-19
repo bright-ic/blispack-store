@@ -449,12 +449,27 @@ footer {
 .only_mobile {display: none !important;}
 .only_non_mobile {display: block !important;}
 
+.category-searchbar-wrapper {display: none;}
+body.show_categpry_search .category-searchbar-wrapper {display: block;}
 .category-searchbar-wrapper, 
-.hero-banner-wrapper {background-color: #DEDEEC;}
-.hero-banner-wrapper {padding-bottom: 30px;}
+.hero-banner-wrapper {background-color: #F8F8FA;}
+.hero-banner-wrapper, .products-banner-wrapper {padding-bottom: 30px;}
 .category-searchfield-container {padding: 20px 15px;}
 .category-searchfield-container .category-field-container {width: 100%; max-width: 300px;}
 .category-searchfield-container .search-field-container {flex: 1;}
+
+body.home .single-product,
+body.products .single-product {box-shadow: 4px 2px 5px 2px rgba(224,220,220,0.66);
+    -webkit-box-shadow: 4px 2px 5px 2px rgba(224,220,220,0.66);
+    -moz-box-shadow: 4px 2px 5px 2px rgba(224,220,220,0.66);
+    border-radius:8px;
+}
+body.products .product-index-box img,
+body.home .product-index-box img {border: 0px;}
+
+.more-products-link-container a {color: #7D7DF1; font-size: 18px; font-weight: 500;}
+#home-stores-catories select.select_category { background-color: #F3F3FA; border: 0px;}
+
 @media screen and (min-width:1200px) {
     .container {max-width: 1340px;}
 }
@@ -462,8 +477,10 @@ footer {
     .nav-container {box-shadow: 0px 3px 5px 0px rgba(184,170,170,0.75);
         -webkit-box-shadow: 0px 3px 5px 0px rgba(184,170,170,0.75);
         -moz-box-shadow: 0px 3px 5px 0px rgba(184,170,170,0.75);
+        background-color: #478ba2;
     }
     .category-searchfield-container {padding-top: 40px; padding-bottom: 40px;}
+    body.products .category-searchfield-container {padding-bottom: 20px;}
     .category-searchfield-container .category-field-container select {border-radius: 50px;}
     .category-searchfield-container .search-field-container {padding-left: 20px;}
         .category-searchfield-container .search-field-container input {border-radius: 50px;}
@@ -495,7 +512,7 @@ footer {
   .category-searchbar-wrapper, 
 .hero-banner-wrapper {background-color: transparent;}
 .hero-banner-wrapper {padding-bottom: 0px;}
-  #home-stores-catories {display: none;}
+#home-stores-catories {display: none;}
     .category-searchfield-container .category-field-container {max-width: 100%;}
     .category-searchfield-container .search-field-container {display: none;}
     hr.gradient-style.home { background-image: none; border: 0px; }

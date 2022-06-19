@@ -1,46 +1,49 @@
 <%- include ../partials/header %> 
-
 <div class="container-fluid">
-  <!-- Flash messages -->
-  <% if(successMsg || errorMsg) {%>
-  <div class="row mt-3 mb-3">
-    <div class="col-md-12 m-auto">
-      <% if (successMsg) { %>
-      <div id="success" class="alert alert-success">
-        <%= successMsg %>
-      </div>
-      <% } else { %>
-      <div id="success" class="alert alert-success d-none"></div>
-      <% } %>
-    </div>
-    <div class="col-md-12 m-auto">
-      <% if (errorMsg) { %>
-      <div id="error" class="alert alert-danger">
-        <%= errorMsg %>
-      </div>
-      <% } else { %>
-      <div id="error" class="alert alert-danger d-none"></div>
-      <% } %>
-    </div>
-  </div>
-  <% } %>
-  <!-- Breadcrumbs -->
-  <div class="row mt-2">
-    <div class="col-md-12 m-auto">
-      <%if (breadcrumbs) { %>
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <% breadcrumbs.forEach(crumb => { if(!crumb.name.startsWith("?")){%>
-          <li class="breadcrumb-item" aria-current="page">
-            <a href="<%=crumb.url%>"><%= crumb.name %></a>
-          </li>
-          <%}})%>
-        </ol>
-      </nav>
-      <%} %>
-    </div>
-  </div>
-  <!-- Page banner image -->
+   <!-- Flash messages -->
+   <% if(successMsg || errorMsg) { %>
+        <div class="row mt-3 mb-3">
+        <div class="col-md-12 m-auto">
+            <% if (successMsg) { %>
+            <div id="success" class="alert alert-success">
+            <%= successMsg %>
+            </div>
+            <% } else { %>
+            <div id="success" class="alert alert-success d-none"></div>
+            <% } %>
+        </div>
+        <div class="col-md-12 m-auto">
+            <% if (errorMsg) { %>
+            <div id="error" class="alert alert-danger">
+            <%= errorMsg %>
+            </div>
+            <% } else { %>
+            <div id="error" class="alert alert-danger d-none"></div>
+            <% } %>
+        </div>
+        </div>
+    <% } %>
+</div>
+
+<div class="products-banner-wrapper"> 
+    <div class="container-fluid">
+        <!-- Breadcrumbs -->
+        <div class="row mt-0">
+            <div class="col-md-12 m-auto">
+                <%if (breadcrumbs) { %>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb" style="background: transparent;">
+                    <% breadcrumbs.forEach(crumb => { if(!crumb.name.startsWith("?")){%>
+                    <li class="breadcrumb-item" aria-current="page">
+                        <a href="<%=crumb.url%>"><%= crumb.name %></a>
+                    </li>
+                    <%}})%>
+                    </ol>
+                </nav>
+                <%} %>
+            </div>
+        </div>
+        <!-- Page banner image -->
 
   <% if(pageName == 'All Products') { %>
   <div class="text-center hero-container">
@@ -57,13 +60,18 @@
   <div class="text-center hero-container">
     <img
       class="d-block w-100 hero-image"
-      src="/images/banner-<%=category.slug%>.jpg"
+      src="/images/banner-all-products.jpg"
     />
     <div class="hero-text">
       <h1><%=pageName%></h1>
     </div>
   </div>
   <%}%> <%})%> <%}%>
+    </div>
+</div>
+<div class="container-fluid">
+ 
+  
 
   <hr class="gradient-style" />
   <!-- Contents -->

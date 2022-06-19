@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
 
     res.render("shop/index", {
       pageName: "All Products",
-      selected_page: 'products',
+      selected_page: 'products show_categpry_search',
       products,
       successMsg,
       errorMsg,
@@ -57,7 +57,7 @@ router.get("/search", async (req, res) => {
     });
     res.render("shop/index", {
       pageName: "Search Results",
-      selected_page: 'products',
+      selected_page: 'products show_categpry_search',
       products,
       successMsg,
       errorMsg,
@@ -90,7 +90,7 @@ router.get("/:slug", async (req, res) => {
 
     res.render("shop/index", {
       pageName: foundCategory.title,
-      selected_page: 'products',
+      selected_page: 'products show_categpry_search',
       currentCategory: foundCategory,
       products: allProducts,
       successMsg,
@@ -114,7 +114,7 @@ router.get("/:slug/:id", async (req, res) => {
     const product = await Product.findById(req.params.id).populate("category");
     res.render("shop/product", {
       pageName: product.title,
-      selected_page: 'product',
+      selected_page: 'product show_categpry_search',
       product,
       successMsg,
       errorMsg,

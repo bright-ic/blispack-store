@@ -14,10 +14,10 @@ router.use(csrfProtection);
 // GET: home page
 router.get("/", async (req, res) => {
   try {
-    const products = await Product.find({})
+    const products = await Product.find({}).limit(20)
       .sort("-createdAt")
       .populate("category");
-    res.render("shop/home", { pageName: "Home", products, selected_page: 'home' });
+    res.render("shop/home", { pageName: "Home", products, selected_page: 'home show_categpry_search' });
   } catch (error) {
     console.log(error);
     res.redirect("/");
@@ -96,7 +96,7 @@ router.get("/shopping-cart", async (req, res) => {
       return res.render("shop/shopping-cart", {
         cart: cart_user,
         pageName: "Shopping Cart",
-        selected_page: 'shopping_cart',
+        selected_page: 'shopping_cart show_categpry_search',
         products: await productsFromCart(cart_user),
       });
     }
@@ -105,7 +105,7 @@ router.get("/shopping-cart", async (req, res) => {
       return res.render("shop/shopping-cart", {
         cart: null,
         pageName: "Shopping Cart",
-        selected_page: 'shopping_cart',
+        selected_page: 'shopping_cart show_categpry_search',
         products: null,
       });
     }
@@ -113,7 +113,7 @@ router.get("/shopping-cart", async (req, res) => {
     return res.render("shop/shopping-cart", {
       cart: req.session.cart,
       pageName: "Shopping Cart",
-      selected_page: 'shopping_cart',
+      selected_page: 'shopping_cart show_categpry_search',
       products: await productsFromCart(req.session.cart),
     });
   } catch (err) {
