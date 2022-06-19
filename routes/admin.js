@@ -20,7 +20,7 @@ const adminBro = new AdminBro({
   databases: [mongoose],
   rootPath: "/admin",
   branding: {
-    companyName: "Dickael Store",
+    companyName: "Leading bliss pack Store",
     logo: "/images/shop-icon.png",
     softwareBrothers: false,
   },

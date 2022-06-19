@@ -4,7 +4,7 @@
   "main": "app.js",
   "description": "A virtual ecommerce website using Node js, Express js, and Mongoose.",
   "scripts": {
-    "start": "app.js",
+    "start": "node app.js",
     "dev": "nodemon app.js"
   },
   "author": "Bright Onwukwe",
