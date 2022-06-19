@@ -1,38 +1,40 @@
-<nav class="navbar navbar-expand-md navbar-custom navbar-dark">
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarNav"
-    aria-controls="navbarNav"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse mx-auto order-0" id="navbarNav">
-    <ul class="navbar-nav mx-auto">
-      <li <% if (pageName === "All Products") { %>
-        class="nav-item active"
-        <%} else {%>
-          class="nav-item"
-        <%} %> 
-      >
-        <a class="nav-link" href="/products/">All</a>
-      </li>
+<nav class="navbar navbar-expand-md navbar-custom navbar-dark only_mobile">
+    <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+    >
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-      <% if (categories) { %>
-        <% categories.forEach( category => { %>
-          <li <% if (pageName === category.title) { %>
-            class="nav-item active"
+    <a href="/" class="logo-title text-white">Leading Bliss Pack</a>
+
+    <div style="display: inline-block; position: absolute; right: 15px;">
+        <a href="/shopping-cart"> <i class="fas fa-shopping-cart text-white"></i>
+            <span class="badge badge-pill badge-info" >
+                <% if(session.cart) { %> <%= session.cart.totalQty %> <% } else { %> 0 <% } %>
+            </span>
+        </a>
+    </div>
+
+    <div class="collapse navbar-collapse mx-auto order-0" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+            <% if (login) { %>
+                <li> <a class="nav-link" href="javascript:void();">Welcome <% if(currentUser) { %> <%=currentUser.username %> <% } %></a> </li>
+                <li> <a class="nav-link" href="/user/profile">User Account</a> </li>
+                <li> <a class="nav-link" href="/user/logout">Logout</a> </li>
             <% } else { %>
-              class="nav-item"
-            <% } %> 
-          >
-          <a class="nav-link" href="/products/<%= category.slug %>"><%= category.title %></a>
-        </li>
-          <% }) %>
-      <% } %>
-    </ul>
-  </div>
+                <li> <a class="nav-link" href="/user/signup"> Sign Up</a> </li>
+                <li> <a class="nav-link" href="/user/signin"> Sign In</a> </li>
+            <% }%>
+        </ul>
+    </div>
+  
+
+    
+
 </nav>

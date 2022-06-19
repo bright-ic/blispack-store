@@ -23,6 +23,7 @@ router.get("/signup", middleware.isNotLoggedIn, (req, res) => {
     csrfToken: req.csrfToken(),
     errorMsg,
     pageName: "Sign Up",
+    selected_page: 'sign_up',
   });
 });
 // POST: handle the signup logic
@@ -69,6 +70,7 @@ router.get("/signin", middleware.isNotLoggedIn, async (req, res) => {
     csrfToken: req.csrfToken(),
     errorMsg,
     pageName: "Sign In",
+    selected_page: 'sign_in',
   });
 });
 
@@ -126,9 +128,9 @@ router.get("/profile", middleware.isLoggedIn, async (req, res) => {
       errorMsg,
       successMsg,
       pageName: "User Profile",
+      selected_page: 'profile',
     });
   } catch (err) {
-    console.log(err);
     return res.redirect("/");
   }
 });

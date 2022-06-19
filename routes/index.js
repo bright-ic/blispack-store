@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
     const products = await Product.find({})
       .sort("-createdAt")
       .populate("category");
-    res.render("shop/home", { pageName: "Home", products });
+    res.render("shop/home", { pageName: "Home", products, selected_page: 'home' });
   } catch (error) {
     console.log(error);
     res.redirect("/");
@@ -96,6 +96,7 @@ router.get("/shopping-cart", async (req, res) => {
       return res.render("shop/shopping-cart", {
         cart: cart_user,
         pageName: "Shopping Cart",
+        selected_page: 'shopping_cart',
         products: await productsFromCart(cart_user),
       });
     }
@@ -104,6 +105,7 @@ router.get("/shopping-cart", async (req, res) => {
       return res.render("shop/shopping-cart", {
         cart: null,
         pageName: "Shopping Cart",
+        selected_page: 'shopping_cart',
         products: null,
       });
     }
@@ -111,6 +113,7 @@ router.get("/shopping-cart", async (req, res) => {
     return res.render("shop/shopping-cart", {
       cart: req.session.cart,
       pageName: "Shopping Cart",
+      selected_page: 'shopping_cart',
       products: await productsFromCart(req.session.cart),
     });
   } catch (err) {
@@ -215,6 +218,7 @@ router.get("/checkout", middleware.isLoggedIn, async (req, res) => {
     csrfToken: req.csrfToken(),
     errorMsg,
     pageName: "Checkout",
+    selected_page: 'checkout',
   });
 });
 

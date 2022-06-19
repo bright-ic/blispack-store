@@ -13,6 +13,7 @@ router.use(csrfProtection);
 router.get("/about-us", (req, res) => {
   res.render("pages/about-us", {
     pageName: "About Us",
+    selected_page: 'about',
   });
 });
 
@@ -20,6 +21,7 @@ router.get("/about-us", (req, res) => {
 router.get("/shipping-policy", (req, res) => {
   res.render("pages/shipping-policy", {
     pageName: "Shipping Policy",
+    selected_page: 'shipping_policy',
   });
 });
 
@@ -27,6 +29,7 @@ router.get("/shipping-policy", (req, res) => {
 router.get("/careers", (req, res) => {
   res.render("pages/careers", {
     pageName: "Careers",
+    selected_page: 'careers',
   });
 });
 
@@ -36,6 +39,7 @@ router.get("/contact-us", (req, res) => {
   const errorMsg = req.flash("error");
   res.render("pages/contact-us", {
     pageName: "Contact Us",
+    selected_page: 'contact',
     csrfToken: req.csrfToken(),
     successMsg,
     errorMsg,

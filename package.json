@@ -1,8 +1,8 @@
 {
-  "name": "ecommerce-nodejs-website",
+  "name": "leadingblisspack",
   "version": "1.0.0",
   "main": "app.js",
-  "description": "A virtual ecommerce website using Node js, Express js, and Mongoose.",
+  "description": "An ecommerce website using for all",
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js"
