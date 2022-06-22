@@ -25,7 +25,7 @@ app.set("view engine", "ejs");
 const adminRouter = require("./routes/admin");
 app.use("/admin", adminRouter);
 
-app.use(logger("dev"));
+// app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -87,10 +87,12 @@ const indexRouter = require("./routes/index");
 const productsRouter = require("./routes/products");
 const usersRouter = require("./routes/user");
 const pagesRouter = require("./routes/pages");
+const checkoutRouter = require("./routes/checkout");
 app.use("/products", productsRouter);
 app.use("/user", usersRouter);
 app.use("/pages", pagesRouter);
 app.use("/", indexRouter);
+app.use("/", checkoutRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

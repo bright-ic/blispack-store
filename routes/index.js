@@ -203,68 +203,68 @@ router.get("/removeAll/:id", async function (req, res, next) {
 });
 
 // GET: checkout form with csrf token
-router.get("/checkout", middleware.isLoggedIn, async (req, res) => {
-  const errorMsg = req.flash("error")[0];
+// router.get("/checkout", middleware.isLoggedIn, async (req, res) => {
+//   const errorMsg = req.flash("error")[0];
 
-  if (!req.session.cart) {
-    return res.redirect("/shopping-cart");
-  }
-  //load the cart with the session's cart's id from the db
-  cart = await Cart.findById(req.session.cart._id);
+//   if (!req.session.cart) {
+//     return res.redirect("/shopping-cart");
+//   }
+//   //load the cart with the session's cart's id from the db
+//   cart = await Cart.findById(req.session.cart._id);
 
-  const errMsg = req.flash("error")[0];
-  res.render("shop/checkout", {
-    total: cart ? cart.totalCost : 0,
-    csrfToken: req.csrfToken(),
-    errorMsg,
-    pageName: "Checkout",
-    selected_page: 'checkout',
-  });
-});
+//   const errMsg = req.flash("error")[0];
+//   res.render("shop/checkout", {
+//     total: cart ? cart.totalCost : 0,
+//     csrfToken: req.csrfToken(),
+//     errorMsg,
+//     pageName: "Checkout",
+//     selected_page: 'checkout',
+//   });
+// });
 
 // POST: handle checkout logic and payment using Stripe
-router.post("/checkout", middleware.isLoggedIn, async (req, res) => {
-  if (!req.session.cart) {
-    return res.redirect("/shopping-cart");
-  }
-  const cart = await Cart.findById(req.session.cart._id);
-  stripe.charges.create(
-    {
-      amount: cart.totalCost * 100,
-      currency: "usd",
-      source: req.body.stripeToken,
-      description: "Test charge",
-    },
-    function (err, charge) {
-      if (err) {
-        req.flash("error", err.message);
-        console.log(err);
-        return res.redirect("/checkout");
-      }
-      const order = new Order({
-        user: req.user,
-        cart: {
-          totalQty: cart.totalQty,
-          totalCost: cart.totalCost,
-          items: cart.items,
-        },
-        address: req.body.address,
-        paymentId: charge.id,
-      });
-      order.save(async (err, newOrder) => {
-        if (err) {
-          console.log(err);
-          return res.redirect("/checkout");
-        }
-        await cart.save();
-        await Cart.findByIdAndDelete(cart._id);
-        req.flash("success", "Successfully purchased");
-        req.session.cart = null;
-        res.redirect("/user/profile");
-      });
-    }
-  );
-});
+// router.post("/checkout", middleware.isLoggedIn, async (req, res) => {
+//   if (!req.session.cart) {
+//     return res.redirect("/shopping-cart");
+//   }
+//   const cart = await Cart.findById(req.session.cart._id);
+//   stripe.charges.create(
+//     {
+//       amount: cart.totalCost * 100,
+//       currency: "usd",
+//       source: req.body.stripeToken,
+//       description: "Test charge",
+//     },
+//     function (err, charge) {
+//       if (err) {
+//         req.flash("error", err.message);
+//         console.log(err);
+//         return res.redirect("/checkout");
+//       }
+//       const order = new Order({
+//         user: req.user,
+//         cart: {
+//           totalQty: cart.totalQty,
+//           totalCost: cart.totalCost,
+//           items: cart.items,
+//         },
+//         address: req.body.address,
+//         paymentId: charge.id,
+//       });
+//       order.save(async (err, newOrder) => {
+//         if (err) {
+//           console.log(err);
+//           return res.redirect("/checkout");
+//         }
+//         await cart.save();
+//         await Cart.findByIdAndDelete(cart._id);
+//         req.flash("success", "Successfully purchased");
+//         req.session.cart = null;
+//         res.redirect("/user/profile");
+//       });
+//     }
+//   );
+// });
 
 // create products array to store the info of each product in the cart
 async function productsFromCart(cart) {
