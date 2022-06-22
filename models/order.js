@@ -58,4 +58,9 @@ const orderSchema = Schema({
   },
 });
 
+orderSchema.methods.toJSON = function () {
+  const order = this;
+  return order.toObject();
+};
+
 module.exports = mongoose.model("Order", orderSchema);

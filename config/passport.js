@@ -36,7 +36,6 @@ passport.use(
         await newUser.save();
         return done(null, newUser);
       } catch (error) {
-        console.log(error);
         return done(error);
       }
     }
@@ -60,10 +59,11 @@ passport.use(
         if (!user.validPassword(password)) {
           return done(null, false, { message: "Wrong password" });
         }
+
+        delete user.password;
         return done(null, user);
       } catch (error) {
-        console.log(error);
-        return done(error);
+        return done(error); 
       }
     }
   )

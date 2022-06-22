@@ -2,6 +2,7 @@ const _ = require("lodash");
 const BaseController = require("./base");
 const Cart = require("../models/cart");
 const CheckoutService = require('../services/checkout');
+const { empty } = require("../utilities/utils");
 
 
 class CheckoutController extends BaseController {
@@ -14,17 +15,20 @@ class CheckoutController extends BaseController {
             }
 
             if(_.toUpper(req.method) === "POST") {
-                const checkout = new CheckoutService();
-                const result = await checkout.chargeCustomer(req, req.user);
-                if(!result.success) {
-                    errorMsg = result.data ? result.data : 'Sorry could not process your payment due to something that went wrong'
+                if(req.user && (empty(req.user.can_purchase) || _.toUpper(req.user.can_purchase) !== "YES" ) ) {
+                    errorMsg = 'An error occurred while trying to process your payment';
                 } else {
-                    req.flash("success", "Your order has been placed successfully");
-                    req.session.cart = null;
-                    res.redirect("/user/profile");
-                    return;
+                    const checkout = new CheckoutService();
+                    const result = await checkout.chargeCustomer(req, req.user);
+                    if(!result.success) {
+                        errorMsg = result.data ? result.data : 'Sorry could not process your payment due to something that went wrong'
+                    } else {
+                        req.flash("success", "Your order has been placed successfully");
+                        req.session.cart = null;
+                        res.redirect("/user/profile");
+                        return;
+                    }
                 }
-
             }
             //load the cart with the session's cart's id from the db
             let cart = await Cart.findById(req.session.cart._id);

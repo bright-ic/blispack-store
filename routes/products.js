@@ -31,7 +31,6 @@ router.get("/", async (req, res) => {
       pages: Math.ceil(count / perPage),
     });
   } catch (error) {
-    console.log(error);
     res.redirect("/");
   }
 });
@@ -67,7 +66,6 @@ router.get("/search", async (req, res) => {
       pages: Math.ceil(count / perPage),
     });
   } catch (error) {
-    console.log(error);
     res.redirect("/");
   }
 });
@@ -101,7 +99,6 @@ router.get("/:slug", async (req, res) => {
       pages: Math.ceil(count / perPage),
     });
   } catch (error) {
-    console.log(error);
     return res.redirect("/");
   }
 });
@@ -121,7 +118,6 @@ router.get("/:slug/:id", async (req, res) => {
       moment: moment,
     });
   } catch (error) {
-    console.log(error);
     return res.redirect("/");
   }
 });

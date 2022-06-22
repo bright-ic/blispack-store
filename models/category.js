@@ -16,4 +16,9 @@ const categorySchema = Schema({
   },
 });
 
+categorySchema.methods.toJSON = function () {
+  const category = this;
+  return category.toObject();
+};
+
 module.exports = mongoose.model("Category", categorySchema);

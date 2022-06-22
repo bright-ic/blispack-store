@@ -7,6 +7,9 @@ const User = require("../models/user");
 const Order = require("../models/order");
 const Category = require("../models/category");
 AdminBro.registerAdapter(AdminBroMongoose);
+const adminUserResource = require("../admin/resources/admin-users");
+const UserResource = require("../admin/resources/user");
+const processAdminUserLogin = require("../admin/processAdminLogin")
 
 const {
   after: uploadAfterHook,
@@ -80,23 +83,7 @@ const adminBro = new AdminBro({
         },
       },
     },
-    {
-      resource: User,
-      options: {
-        parent: {
-          name: "User Content",
-          icon: "User",
-        },
-        properties: {
-          _id: {
-            isVisible: { list: false, filter: true, show: true, edit: false },
-          },
-          username: {
-            isTitle: true,
-          },
-        },
-      },
-    },
+    UserResource,
     {
       resource: Order,
       options: {
@@ -173,6 +160,7 @@ const adminBro = new AdminBro({
         },
       },
     },
+    adminUserResource
   ],
   locale: {
     translations: {
@@ -197,10 +185,7 @@ const ADMIN = {
 
 const router = AdminBroExpress.buildAuthenticatedRouter(adminBro, {
   authenticate: async (email, password) => {
-    if (ADMIN.password === password && ADMIN.email === email) {
-      return ADMIN;
-    }
-    return null;
+    return await processAdminUserLogin(email, password);
   },
   cookieName: process.env.ADMIN_COOKIE_NAME,
   cookiePassword: process.env.ADMIN_COOKIE_PASSWORD,

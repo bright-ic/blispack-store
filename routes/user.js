@@ -56,7 +56,6 @@ router.post(
         res.redirect("/user/profile");
       }
     } catch (err) {
-      console.log(err);
       req.flash("error", err.message);
       return res.redirect("/");
     }
@@ -109,7 +108,6 @@ router.post(
         res.redirect("/user/profile");
       }
     } catch (err) {
-      console.log(err);
       req.flash("error", err.message);
       return res.redirect("/");
     }

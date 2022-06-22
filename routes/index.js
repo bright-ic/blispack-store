@@ -19,7 +19,6 @@ router.get("/", async (req, res) => {
       .populate("category");
     res.render("shop/home", { pageName: "Home", products, selected_page: 'home show_categpry_search' });
   } catch (error) {
-    console.log(error);
     res.redirect("/");
   }
 });
@@ -76,7 +75,6 @@ router.get("/add-to-cart/:id", async (req, res) => {
     req.flash("success", "Item added to the shopping cart");
     res.redirect(req.headers.referer);
   } catch (err) {
-    console.log(err.message);
     res.redirect("/");
   }
 });
@@ -91,7 +89,6 @@ router.get("/shopping-cart", async (req, res) => {
     }
     // if user is signed in and has cart, load user's cart from the db
     if (req.user && cart_user) {
-      console.log(cart_user)
       req.session.cart = cart_user;
       return res.render("shop/shopping-cart", {
         cart: cart_user,
@@ -117,7 +114,6 @@ router.get("/shopping-cart", async (req, res) => {
       products: await productsFromCart(req.session.cart),
     });
   } catch (err) {
-    console.log(err.message);
     res.redirect("/");
   }
 });
@@ -162,7 +158,6 @@ router.get("/reduce/:id", async function (req, res, next) {
     }
     res.redirect(req.headers.referer);
   } catch (err) {
-    console.log(err.message);
     res.redirect("/");
   }
 });
@@ -197,7 +192,6 @@ router.get("/removeAll/:id", async function (req, res, next) {
     }
     res.redirect(req.headers.referer);
   } catch (err) {
-    console.log(err.message);
     res.redirect("/");
   }
 });
