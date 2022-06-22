@@ -1,7 +1,6 @@
 const _ = require('lodash');
 const validator = require('validator');
-const crypto = require('crypto');
-const bcrypt = require("bcrypt-nodejs");
+const bcrypt = require("bcrypt");
 
 let _this = this;
 
@@ -494,7 +493,8 @@ exports.formatCurrency = (amount, currency) => {
 }
 
 exports.encryptPassword = (password) => {
-  return bcrypt.hashSync(password, bcrypt.genSaltSync(5), null);
+  let saltRounds = 10;
+  return bcrypt.hashSync(password, saltRounds)
 };
 
 exports.comparePassword = (password, encryptedPassword) => {

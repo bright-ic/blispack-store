@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt-nodejs");
+// const bcrypt = require("bcrypt-nodejs");
+const {encryptPassword, comparePassword} = require("../utilities/utils")
 const Schema = mongoose.Schema;
 
 const userSchema = Schema({
@@ -24,15 +25,11 @@ const userSchema = Schema({
 
 // encrypt the password before storing
 userSchema.methods.encryptPassword = (password) => {
-  return bcrypt.hashSync(password, bcrypt.genSaltSync(5), null);
+  return encryptPassword(password);
 };
 
 userSchema.methods.validPassword = function (candidatePassword) {
-  if (this.password != null) {
-    return bcrypt.compareSync(candidatePassword, this.password);
-  } else {
-    return false;
-  }
+  return comparePassword(candidatePassword, this.password);
 };
 
 userSchema.methods.toJSON = function () {
