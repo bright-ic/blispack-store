@@ -518,6 +518,9 @@ body.home .product-index-box img {border: 0px;}
     hr.gradient-style.home { background-image: none; border: 0px; }
     .navbar-dark .navbar-toggler {padding-left: 0px;}
 }
+.product-description-title {font-weight: 700;}
+.other-product-list-container {padding-top: 50px;}
+.other-product-list-container .section-title {padding-bottom: 45px; text-align: left; font-size: 20px; font-weight: 700;}
 
 /* MD SCREENS */
 @media only screen and (min-width: 768px) and (max-width: 992px) {

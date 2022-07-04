@@ -3,6 +3,7 @@ const router = express.Router();
 const Product = require("../models/product");
 const Category = require("../models/category");
 var moment = require("moment");
+const ProductService = require("../services/products");
 
 // GET: display all products
 router.get("/", async (req, res) => {
@@ -107,12 +108,23 @@ router.get("/:slug", async (req, res) => {
 router.get("/:slug/:id", async (req, res) => {
   const successMsg = req.flash("success")[0];
   const errorMsg = req.flash("error")[0];
+  let products = [];
+  
   try {
-    const product = await Product.findById(req.params.id).populate("category");
+    
+      const product = await Product.findById(req.params.id).populate("category");
+      try {
+        products_result = await ProductService.getRandomProducts(12);
+        if(products_result.success) {
+          products = products_result.data;
+        }
+      } catch(e) {}
+
     res.render("shop/product", {
       pageName: product.title,
       selected_page: 'product show_categpry_search',
       product,
+      products,
       successMsg,
       errorMsg,
       moment: moment,

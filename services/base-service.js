@@ -42,11 +42,7 @@ class BaseService {
      * @return mixed
      */
     static sendFailedResponse(data) {
-        const returnData = { success: false };
-        if (!(!empty(data) || data === "0" || data === 0 || data === "")) {
-            returnData['data'] = null;
-        }
-        returnData['data'] = data;
+        const returnData = { success: false, data };
         return returnData;
     }
 
@@ -56,10 +52,7 @@ class BaseService {
      * @return mixed
      */
     static sendSuccessResponse(data) {
-        const returnData = { success: true };
-        if (!(!empty(data) || data === 0 || data === "0" || data === "")) {
-            returnData['data'] = null;
-        }
+        const returnData = { success: true, data };
         return returnData;
     }
 

@@ -31,12 +31,9 @@
       />
     </div>
     <div class="col-md-5 mt-2 mb-2 ml-2 mr-auto text-dark">
-      <h2><%=product.title%></h2>
+      <h4><%=product.title%></h4>
       <hr />
       <p class="price">USD $<%=product.price%></p>
-      <p class="lead"> Description: 
-        <p><%-product.description-%></p>
-      </p>
       
       <p><strong>Category:</strong> <%=product.category.title%></p>
       <p><strong>Brand: </strong><%=product.manufacturer%></p>
@@ -44,7 +41,7 @@
       <p><strong>Date added to the store:</strong> <%= moment(product.createdAt).format( 'MMMM Do YYYY')%></p>
       <% if(product.available) {%>
       <p class="is-available text-center">In stock</p>
-      <a href="/add-to-cart/<%=product._id%>" class="btn btn-block btn-secondary mt-3 mb-3 button-style">
+      <a href="/add-to-cart/<%=product._id%>" class="btn btn-block btn-secondary mt-3 mb-3 button-style" style="max-width: 250px;">
         Add to Shopping Cart
       </a>
       <% } else { %>
@@ -52,5 +49,63 @@
       <%} %>
     </div>
   </div>
+  <div class="row">
+    <div class="col-12 mb-2 text-dark">
+      <p class="lead product-description-title"> Description: 
+        <p><%-product.description-%></p>
+      </p>
+    </div>
+  </div>
+
+  <% if(products && products.length > 0){ %>
+    <section class="other-product-list-container">
+        <div class="section-title">Other people are looking at these products</div>
+        <div class="row">
+            <% for(let i=0; i< products.length; i++) { %>
+                <% if (products[i]) { %>
+                    <div class="col-md-3 col-lg-2 product-index-box">
+                        <div class="single-product d-flex flex-column h-100">
+                        <a
+                            class="title-link"
+                            href="/products/<%=products[i].category.slug%>/<%=products[i]._id%>"
+                        >
+                            <img
+                            src="<%= products[i].imagePath %>"
+                            alt="Bag"
+                            class="img-fluid"
+                            style="border-radius: 50%; height:150px; width: auto;"
+                        /></a>
+                        <div class="product-info">
+                            <a
+                            class="title-link"
+                            href="/products/<%=products[i].category.slug%>/<%=products[i]._id%>"
+                            >
+                            <h6 class="mt-2 mb-2"><%= products[i].title.substring(0, 30) %>...</h6></a
+                            >
+                            <div class="price">$<%= products[i].price %></div>
+                        </div>
+                        <% if(products[i].available) {%>
+                        <a
+                            href="/add-to-cart/<%=products[i]._id%>"
+                            class="btn btn-block btn-secondary button-style mt-auto mb-2"
+                        >
+                            Add to Shopping Cart
+                        </a>
+                        <% } else { %>
+                        <a
+                            href="#"
+                            class="btn btn-block btn-danger button-style-danger mt-2 mb-2"
+                        >
+                            Sold out
+                        </a>
+                        <%} %>
+                        </div>
+                    </div>
+                <%}%>
+            <%}%>
+        </div>
+    </section>
+    <%}%>
+
 </div>
 <%- include ../partials/footer %>
