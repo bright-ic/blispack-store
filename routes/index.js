@@ -14,7 +14,7 @@ router.use(csrfProtection);
 // GET: home page
 router.get("/", async (req, res) => {
   try {
-    const products = await Product.find({}).limit(20)
+    const products = await Product.find({}).limit(24)
       .sort("-createdAt")
       .populate("category");
     res.render("shop/home", { pageName: "Home", products, selected_page: 'home show_categpry_search' });

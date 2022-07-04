@@ -271,7 +271,7 @@ hr.gradient-style {
 /* SINGLE PRODUCT PAGE */
 
 .product-img {
-  border: 1px solid var(--dark-gray);
+  border: 0px solid var(--dark-gray);
   border-radius: 7px;
 }
 

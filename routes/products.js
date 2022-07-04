@@ -8,7 +8,7 @@ var moment = require("moment");
 router.get("/", async (req, res) => {
   const successMsg = req.flash("success")[0];
   const errorMsg = req.flash("error")[0];
-  const perPage = 8;
+  const perPage = 24;
   let page = parseInt(req.query.page) || 1;
   try {
     const products = await Product.find({})
