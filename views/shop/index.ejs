@@ -79,40 +79,42 @@
   <!-- Contents -->
   <div class="row pl-4 pr-4">
     <% products.forEach((product) => { %>
-    <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12 product-index-box">
-      <div class="single-product d-flex flex-column h-100">
-        <a
-          class="title-link"
-          href="/products/<%=product.category.slug%>/<%=product._id%>"
-        >
-          <img src="<%= product.imagePath %>" alt="Bag" class="img-fluid" style="border-radius: 50%; height:150px; width: auto;"
-        /></a>
-        <div class="product-info">
+      <% if (product && product._id && product.category && product.category.slug) { %>
+      <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12 product-index-box">
+        <div class="single-product d-flex flex-column h-100">
           <a
             class="title-link"
             href="/products/<%=product.category.slug%>/<%=product._id%>"
           >
-            <h6 class="mt-2 mb-2"><%= product.title.substring(0, 30) %>...</h6></a
+            <img src="<%= product.imagePath %>" alt="Bag" class="img-fluid" style="border-radius: 50%; height:150px; width: auto;"
+          /></a>
+          <div class="product-info">
+            <a
+              class="title-link"
+              href="/products/<%=product.category.slug%>/<%=product._id%>"
+            >
+              <h6 class="mt-2 mb-2"><%= product.title.substring(0, 30) %>...</h6></a
+            >
+            <div class="price">$<%= product.price %></div>
+          </div>
+          <% if(product.available) {%>
+          <a
+            href="/add-to-cart/<%=product._id%>"
+            class="btn btn-block btn-secondary button-style mt-auto mb-2"
           >
-          <div class="price">$<%= product.price %></div>
+            Add to Shopping Cart
+          </a>
+          <% } else { %>
+          <a
+            href="#"
+            class="btn btn-block btn-danger button-style-danger mt-2 mb-2"
+          >
+            Sold out
+          </a>
+          <%} %>
         </div>
-        <% if(product.available) {%>
-        <a
-          href="/add-to-cart/<%=product._id%>"
-          class="btn btn-block btn-secondary button-style mt-auto mb-2"
-        >
-          Add to Shopping Cart
-        </a>
-        <% } else { %>
-        <a
-          href="#"
-          class="btn btn-block btn-danger button-style-danger mt-2 mb-2"
-        >
-          Sold out
-        </a>
-        <%} %>
       </div>
-    </div>
+    <%}%>
     <% }) %>
   </div>
 
