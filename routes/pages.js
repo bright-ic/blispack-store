@@ -8,6 +8,13 @@ const {
 } = require("../config/validator");
 const csrfProtection = csrf();
 router.use(csrfProtection);
+const PagesController = require("../controllers/pages");
+
+
+router.get("/privacy-policy", async (req, res) => {
+    const pagesController = new PagesController(req, res);
+    return await pagesController.privacy_policyAction(req, res)
+});
 
 //GET: display abous us page
 router.get("/about-us", (req, res) => {
