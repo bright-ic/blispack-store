@@ -76,26 +76,31 @@
 </div>
 
 <!-- Store's categories section -->
-<div class="container" id="home-stores-catories">
-    <div class="category-field-container">
-        <select name="select_category" class="form-control select_category">
-            <% if (categories) { %>
-                <option value="/products/" <% if (pageName === "All Products") { %> selected <% } %> >All (Category)</option>
-            <%} else { %>
-                <option value="">Category</option>
-            <% } %>
-            
-            <% if (categories) { %>
-                <% categories.forEach( category => { %>
-                    <option 
-                        value="/products/<%= category.slug %>"
-                        <% if (pageName === category.title) { %> selected <% } %> 
-                    ><%= category.title %></option>
-                <% }) %>
-            <% } %>
-        </select>
+<div id="home-stores-catories" class="d-block d-lg-none">
+    <div class="container">
+        <div class="category-field-container">
+            <select name="select_category" class="form-control select_category">
+                <% if (categories) { %>
+                    <option value="/products/" <% if (pageName === "All Products") { %> selected <% } %> >All (Category)</option>
+                <%} else { %>
+                    <option value="">Category</option>
+                <% } %>
+                
+                <% if (categories) { %>
+                    <% categories.forEach( category => { %>
+                        <option 
+                            value="/products/<%= category.slug %>"
+                            <% if (pageName === category.title) { %> selected <% } %> 
+                        ><%= category.title %></option>
+                    <% }) %>
+                <% } %>
+            </select>
+        </div>
     </div>
 </div>
+
+<%- include ../partials/featured-info %>
+
 
 <!-- Latest products slider -->
 <div class="container mb-4 mt-5">
