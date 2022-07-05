@@ -122,7 +122,7 @@ router.get("/:slug/:id", async (req, res) => {
 
     res.render("shop/product", {
       pageName: product.title,
-      selected_page: 'product show_categpry_search',
+      selected_page: 'product',
       product,
       products,
       successMsg,

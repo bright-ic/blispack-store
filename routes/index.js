@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
     const products = await Product.find({}).limit(24)
       .sort("-createdAt")
       .populate("category");
-    res.render("shop/home", { pageName: "Home", products, selected_page: 'home show_categpry_search' });
+    res.render("shop/home", { pageName: "Home", products, selected_page: 'home ' });
   } catch (error) {
     res.redirect("/");
   }
