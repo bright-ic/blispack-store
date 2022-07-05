@@ -502,7 +502,7 @@ body.home .product-index-box img {border: 0px;}
  body.product .container {max-width: 1340px;}
  .product-card .product-price {color:#0068e1;}
 
- .right-nav .badge-info { min-width: auto;}
+ .right-nav .badge-info, .only_mobile .badge-info { min-width: auto;}
 
 @media screen and (min-width:1200px) {
     .container {max-width: 1240px;}
