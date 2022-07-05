@@ -8,16 +8,25 @@ const Order = require("../models/order");
 const middleware = require("../middleware");
 const router = express.Router();
 
+const ProductService = require("../services/products");
+
 const csrfProtection = csrf();
 router.use(csrfProtection);
 
 // GET: home page
 router.get("/", async (req, res) => {
+  let trending_products = {};
   try {
-    const products = await Product.find({}).limit(24)
+    const trending_products_res = await ProductService.getTrendingProductsAndCategory();
+    if(trending_products_res.success && trending_products_res.data) {
+      trending_products = trending_products_res.data;
+    }
+  } catch (error) { }
+  try {
+    const products = await Product.find({}).limit(25)
       .sort("-createdAt")
       .populate("category");
-    res.render("shop/home", { pageName: "Home", products, selected_page: 'home ' });
+    res.render("shop/home", { pageName: "Home", products, selected_page: 'home ', trending_products });
   } catch (error) {
     res.redirect("/");
   }

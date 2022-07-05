@@ -121,47 +121,10 @@
     <!--/.Controls-->
   </div>
   <!--/.Carousel Wrapper-->
-    <div class="row">
+    <div class="row-product-list">
         <% for(let i=0; i< products.length; i++) { %>
             <% if (products[i] && products[i]._id && products[i].category && products[i].category.slug) { %>
-                <div class="col-md-3 col-lg-2 product-index-box">
-                    <div class="single-product d-flex flex-column h-100">
-                    <a
-                        class="title-link"
-                        href="/products/<%=products[i].category.slug%>/<%=products[i]._id%>"
-                    >
-                        <img
-                        src="<%= products[i].imagePath %>"
-                        alt="Bag"
-                        class="img-fluid"
-                        style="border-radius: 50%; height:150px; width: auto;"
-                    /></a>
-                    <div class="product-info">
-                        <a
-                        class="title-link"
-                        href="/products/<%=products[i].category.slug%>/<%=products[i]._id%>"
-                        >
-                        <h6 class="mt-2 mb-2"><%= products[i].title.substring(0, 30) %>...</h6></a
-                        >
-                        <div class="price">$<%= products[i].price %></div>
-                    </div>
-                    <% if(products[i].available) {%>
-                    <a
-                        href="/add-to-cart/<%=products[i]._id%>"
-                        class="btn btn-block btn-secondary button-style mt-auto mb-2"
-                    >
-                        Add to Cart
-                    </a>
-                    <% } else { %>
-                    <a
-                        href="#"
-                        class="btn btn-block btn-danger button-style-danger mt-2 mb-2"
-                    >
-                        Sold out
-                    </a>
-                    <%} %>
-                    </div>
-                </div>
+                <%- include ../partials/product-item %>
             <%}%>
         <%}%>
     </div>

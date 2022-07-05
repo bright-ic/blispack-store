@@ -1,0 +1,45 @@
+<div class="product-card" style="width: 290px;" tabindex="-1" role="tabpanel" data-slick-index="-6" aria-hidden="true">
+    <div class="product-card-top">
+        <a href="/products/<%=products[i].category.slug%>/<%=products[i]._id%>" class="product-image" tabindex="-1">
+            <img src="<%= products[i].imagePath %>" alt="<%=products[i].title %>" class="">
+        </a>
+        <div class="product-card-actions">
+            <button title="Wishlist" class="btn btn-wishlist" tabindex="-1"> <i class="fa fa-heart lar"></i></button> 
+            <button title="Compare" class="btn btn-compare" tabindex="-1"><i class="fa fa-random"></i></button>
+        </div>
+        <ul class="list-inline product-badge">
+            <!---->
+            <!---->
+        </ul>
+    </div>
+    <div class="product-card-middle">
+        <div class="product-rating">
+            <div class="back-stars">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <div class="front-stars" style="width: 0%;">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                </div>
+            </div> 
+            <span class="rating-count">(0)</span>
+        </div> <a
+            href="/products/<%=products[i].category.slug%>/<%=products[i]._id%>"
+            class="product-name" tabindex="-1">
+            <h6><%= products[i].title %></h6>
+        </a>
+        <div class="product-price product-price-clone">$<%= products[i].price %></div>
+    </div>
+    <div class="product-card-bottom">
+        <div class="product-price">$<%= products[i].price %></div> 
+        <a href="/add-to-cart/<%=products[i]._id%>" class="btn btn-primary btn-add-to-cart" tabindex="-1">
+            <i class="fa fa-cart-arrow-down"></i> ADD TO CART
+        </a>
+    </div>
+</div>

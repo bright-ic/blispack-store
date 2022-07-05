@@ -38,7 +38,7 @@ class CheckoutController extends BaseController {
                 csrfToken: req.csrfToken(),
                 errorMsg,
                 pageName: "Checkout",
-                selected_page: 'checkout',
+                selected_page: 'product-checkout',
             }))
         } catch(e) {
             console.log(e)

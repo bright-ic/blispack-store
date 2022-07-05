@@ -45,78 +45,51 @@
         </div>
         <!-- Page banner image -->
 
-  <% if(pageName == 'All Products') { %>
-  <div class="text-center hero-container">
-    <img
-      class="d-block w-100 hero-image"
-      src="/images/banner-all-products.jpg"
-    />
-    <div class="hero-text">
-      <h1><%=pageName%></h1>
-    </div>
-  </div>
-  <%} else {%> <%categories.forEach( category => {%> <%if(pageName ==
-  category.title){%>
-  <div class="text-center hero-container">
-    <img
-      class="d-block w-100 hero-image"
-      src="/images/banner-all-products.jpg"
-    />
-    <div class="hero-text">
-      <h1><%=pageName%></h1>
-    </div>
-  </div>
-  <%}%> <%})%> <%}%>
+		<% if(pageName == 'All Products') { %>
+			<div class="text-center hero-container">
+				<img
+				class="d-block w-100 hero-image"
+				src="/images/banner-all-products.jpg"
+				/>
+				<div class="hero-text">
+				<h1 class="text-white"><%=pageName%></h1>
+				</div>
+			</div>
+		<% } else { %> <% categories.forEach( category => { %> <% if(pageName == category.title){ %>
+			<div class="text-center hero-container">
+				<img
+				class="d-block w-100 hero-image"
+				src="/images/banner-all-products.jpg"
+				/>
+				<div class="hero-text">
+				<h1 class="text-white"><%=pageName%></h1>
+				</div>
+			</div>
+		<%}%> <%})%> <%}%>
     </div>
 </div>
-<div class="container">
- 
-  
 
+<%- include ../partials/featured-info %>
+
+<div class="container">
   <!-- <hr class="gradient-style" /> -->
   <br/>
   <br/>
   <!-- Contents -->
-  <div class="row pl-4 pr-4">
-    <% products.forEach((product) => { %>
-      <% if (product && product._id && product.category && product.category.slug) { %>
-      <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12 product-index-box">
-        <div class="single-product d-flex flex-column h-100">
-          <a
-            class="title-link"
-            href="/products/<%=product.category.slug%>/<%=product._id%>"
-          >
-            <img src="<%= product.imagePath %>" alt="Bag" class="img-fluid" style="border-radius: 50%; height:150px; width: auto;"
-          /></a>
-          <div class="product-info">
-            <a
-              class="title-link"
-              href="/products/<%=product.category.slug%>/<%=product._id%>"
-            >
-              <h6 class="mt-2 mb-2"><%= product.title.substring(0, 30) %>...</h6></a
-            >
-            <div class="price">$<%= product.price %></div>
-          </div>
-          <% if(product.available) {%>
-          <a
-            href="/add-to-cart/<%=product._id%>"
-            class="btn btn-block btn-secondary button-style mt-auto mb-2"
-          >
-            Add to Cart
-          </a>
-          <% } else { %>
-          <a
-            href="#"
-            class="btn btn-block btn-danger button-style-danger mt-2 mb-2"
-          >
-            Sold out
-          </a>
-          <%} %>
-        </div>
-      </div>
-    <%}%>
-    <% }) %>
-  </div>
+  	<div class="row">
+		<div class="col-12 col-lg-2 d-none d-lg-block pr-0">
+			<%- include ../partials/sidebar %>
+		</div>
+		<div class="col-12 col-lg-10">
+			<div class="row-product-list">
+				<% for(let i=0; i< products.length; i++) { %>
+					<% if (products[i] && products[i]._id && products[i].category && products[i].category.slug) { %>
+						<%- include ../partials/product-item %>
+					<%}%>
+				<%}%>
+			</div>
+    	</div>
+	</div>
 
   <%- include ../partials/pagination %>
 </div>

@@ -1,0 +1,73 @@
+<% if(trending_products && trending_products.categories && trending_products.products) { %>
+<section class="featured-categories-wrap">
+    <div class="container">
+        <div class="featured-categories-header">
+            <div class="featured-categories-text">
+                <h2 class="title">Top Categories in Sales and Trending</h2> <span class="excerpt">Last Month upto 1500+
+                    Products Sales From this catagory. You can choose a product from here and save money.</span>
+            </div>
+            <ul class="tabs featured-categories-tabs">
+                <% categories.forEach( category => { %>
+                    <% if (category && category.id && category.title) { %>
+                        <li class="tab-item active" data-target="<%= category.id %>-tab">
+                            <div class="featured-category-image"><img
+                                    src="<%= category.id %>"
+                                    alt="category logo" class=""></div> <span class="featured-category-name">category.title</span>
+                        </li>
+                    <% } %>
+                <% }) %>
+            </ul>
+        </div>
+        <div class="featured-category-products">
+            <div class="featured-tab-content">
+                <div class="featured-tab-content-item active" id="laptops-tab">
+                    tablet
+                </div>
+                <div class="featured-tab-content-item" id="mobiles-tab">
+                    mobile
+                </div>
+            </div>
+            <div class="products-list-trending">
+                    <div class="product-card" style="width: 290px;" tabindex="-1"
+                        role="tabpanel" data-slick-index="-6" aria-hidden="true">
+                        <div class="product-card-top"><a
+                                href="https://fleetcart.envaysoft.com/en/products/microsoft-surface-laptop-3-135-touch-screen-intel-core-i5-8gb-memory-256gb"
+                                class="product-image" tabindex="-1"><img
+                                    src="https://fleetcart.envaysoft.com/storage/media/q5I7WGsoFPLCXD2XM1E8YWerccOhfhCXiLeoGofh.jpeg"
+                                    alt="product image" class=""></a>
+                            <div class="product-card-actions"><button title="Wishlist" class="btn btn-wishlist"
+                                    tabindex="-1"><i class="la-heart lar"></i></button> <button title="Compare"
+                                    class="btn btn-compare" tabindex="-1"><i class="las la-random"></i></button></div>
+                            <ul class="list-inline product-badge">
+                                <!---->
+                                <!---->
+                            </ul>
+                        </div>
+                        <div class="product-card-middle">
+                            <div class="product-rating">
+                                <div class="back-stars"><i class="las la-star"></i> <i class="las la-star"></i> <i
+                                        class="las la-star"></i> <i class="las la-star"></i> <i class="las la-star"></i>
+                                    <div class="front-stars" style="width: 0%;"><i class="las la-star"></i> <i
+                                            class="las la-star"></i> <i class="las la-star"></i> <i
+                                            class="las la-star"></i> <i class="las la-star"></i></div>
+                                </div> <span class="rating-count">(0)</span>
+                            </div> <a
+                                href="https://fleetcart.envaysoft.com/en/products/microsoft-surface-laptop-3-135-touch-screen-intel-core-i5-8gb-memory-256gb"
+                                class="product-name" tabindex="-1">
+                                <h6>Microsoft Surface Laptop 3 – 13.5" Touch-Screen – Intel Core i5 - 8GB Memory - 256GB
+                                </h6>
+                            </a>
+                            <div class="product-price product-price-clone">$1,299.00</div>
+                        </div>
+                        <div class="product-card-bottom">
+                            <div class="product-price">$1,299.00</div> <button class="btn btn-primary btn-add-to-cart"
+                                tabindex="-1"><i class="las la-cart-arrow-down"></i>
+                                ADD TO CART
+                            </button>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</section>
+<% } %>

@@ -17,7 +17,7 @@
           </tr>
         </thead>
         <tbody>
-          <% products.forEach( product => { %> <% if(product != null) {%>
+          <% products.forEach( product => { %> <% if(product != null) { %>
           <tr class="my-auto">
             <td>
               <a
@@ -58,7 +58,7 @@
               <a
                 href="/removeAll/<%=product._id%>"
                 class="btn btn-danger btn-sm button-style-danger"
-                >Remove all</a
+                ><i class="fa fa-trash"></i></a
               >
             </td>
           </tr>
