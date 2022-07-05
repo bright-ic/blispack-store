@@ -1,0 +1,19 @@
+<div class="sidebar wrapper">
+    <div class="sidebar-content">
+        <ul class="links-container">
+            <% if (categories) { %>
+                <% categories.forEach( category => { %>
+                    <% if (category && category.slug && category.title) { %>
+                        <li>
+                            <a class="menu-item" href="/products/<%= category.slug %>">
+                                <!-- <i class="fa fa-link start"></i> -->
+                                <%= category.title %>
+                                <i class="fa fa-angle-right end"></i>
+                            </a>
+                        </li>
+                    <% } %>
+                <% }) %>
+            <% } %>
+        </ul>
+    </div>
+</div>
