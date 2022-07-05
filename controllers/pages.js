@@ -16,6 +16,17 @@ class PagesController extends BaseController {
         }
     }
 
+    async condition_of_useAction(req, res) {
+        try {
+            res.render("pages/condition-of-use", this.setTemplateParameters(req, {
+                pageName: "condition-of-use",
+                selected_page: "condition-of-use",
+            }))
+        } catch(e) {
+            res.redirect("/")
+        }
+    }
+
 }
 
 module.exports = PagesController;

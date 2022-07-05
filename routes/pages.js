@@ -16,6 +16,11 @@ router.get("/privacy-policy", async (req, res) => {
     return await pagesController.privacy_policyAction(req, res)
 });
 
+router.get("/condition-of-use", async (req, res) => {
+    const pagesController = new PagesController(req, res);
+    return await pagesController.condition_of_useAction(req, res)
+});
+
 //GET: display abous us page
 router.get("/about-us", (req, res) => {
   res.render("pages/about-us", {

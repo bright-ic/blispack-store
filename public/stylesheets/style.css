@@ -17,6 +17,7 @@
 
 body {
   font-family: 9px "Poppins", sans-serif;
+  font-family: sans-serif, Helvetica, Arial
 }
 
 html {
@@ -527,6 +528,12 @@ body.home .product-index-box img {border: 0px;}
 .privacy-policy ul li {list-style-type: disc;}
 .privacy-policy .page-content a {color: #6c6caa;}
 .privacy-policy .page-content h4 {font-size: 22px; font-weight: 700;}
+
+/* TERMS OF USE */
+body.condition-of-use ul {padding-left: 40px;}
+body.condition-of-use ul li {list-style-type: disc;}
+body.condition-of-use .page-content a {color: #6c6caa;}
+body.condition-of-use .page-content h4 {font-size: 22px; font-weight: 700;}
 
 /* MD SCREENS */
 @media only screen and (min-width: 768px) and (max-width: 992px) {
